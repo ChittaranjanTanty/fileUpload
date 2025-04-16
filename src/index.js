@@ -7,6 +7,7 @@ const connectDB = require('./config/dbConfig');
 
 const userRouter = require('./routes/userRoute');
 const authRouter = require('./routes/authRoute');
+const fileRoutes = require("./routes/fileRoute");
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 // Routing middlewares
 app.use('/users', userRouter);
 app.use('/auth', authRouter);
+app.use("/api", fileRoutes);
 
 app.get('/ping', (req, res) => {
     console.log(req.body);
