@@ -32,3 +32,15 @@ exports.getFile = async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch file' });
       }
 };
+
+exports.deleteFile = async (req, res) => {
+    try {
+      const file = await File.findByIdAndDelete(req.params.id);
+      if (!file) return res.status(404).json({ error: 'File not found' });
+  
+      res.status(200).json({ message: 'File deleted successfully' });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Failed to delete file' });
+    }
+  };
